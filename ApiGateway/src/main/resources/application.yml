@@ -1,0 +1,50 @@
+
+server:
+  port: 8083
+
+spring:
+  application:
+    name: ApiGateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+       - id: POSTSERVICE
+         uri: lb://POSTSERVICE
+         predicates:
+          - Path=/post/**
+         filters:
+           - AuthenticationFilter
+
+
+       - id : USERSERVICE
+         uri: lb://USERSERVICE
+         predicates:
+           - Path=/user/**
+         filters:
+           - AuthenticationFilter
+
+       - id: SECURITY-SERVICE
+         uri: lb://SECURITY-SERVICE
+         predicates:
+           - Path=/securityService/**
+         filters:
+           - AuthenticationFilter
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
+
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.Deekshith.Project.ApiGateway: DEBUG
