@@ -10,7 +10,7 @@
 *  for Asynchronous Communication used Kafka as a messaging Broker.
 *  Continuous Improvement will be made.
 *  coming to Security of application
-*  Spring Security is used for Authentication of user and Implemented JWT token is used for Authorization of User .
+*  Spring Security is used for Authentication of user and Implemented JWT token for Authorization of User .
 
 *  Thank you.
 
